@@ -20,7 +20,7 @@ export const execMongoQuery = async (req, res) => {
     try {
         // pass scope of mongoose variables to 
         // eval to mitigate credential leakage
-        let out = await scopedEval({mongoose: mongoose}, req.body.mongoQuery)
+        let out = await scopedEval({mongoose: mongoose}, req.body.mongoQuery.trim())
         return res.send(out);
     } catch(e) {
         return res.json({ error: true, message: `${e}` })
