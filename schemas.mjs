@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+mongoose.pluralize(null);
 
 const date = (options) => {
     var today = new Date();
@@ -12,6 +13,39 @@ const date = (options) => {
 }
 
 export const users = new mongoose.Schema({
+  id: {
+    required: true,
+    type: String
+  },
+  username: {
+    required: true,
+    type: String
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  pendingDeletion: {
+    required: true,
+    type: Boolean
+  }
+});
+
+export const fpp = new mongoose.Schema({
+  username: {
+    required: true,
+    type: String
+  }
+})
+
+export const signage = new mongoose.Schema({
+  username: {
+    required: true,
+    type: String
+  }
+})
+
+export const user = new mongoose.Schema({
     id: { type: String,unique: true },
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
@@ -52,4 +86,10 @@ export const bids = new mongoose.Schema({
             }
         */
     }
+});
+
+export const fpd = new mongoose.Schema({
+  username: {type: String, unique: true, required: true},
+  gateway: String,
+  paymentHistory: Array,
 });
